@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Aetheria</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,400&family=Manrope:wght@200;300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+      :root {
+        --font-serif: 'Cormorant Garamond', serif;
+        --font-sans: 'Manrope', sans-serif;
+      }
+      
+      body {
+        font-family: var(--font-sans);
+        background-color: #09090b; /* Zinc 950 */
+        color: #e4e4e7; /* Zinc 200 */
+        overflow-x: hidden;
+      }
+
+      .font-serif {
+        font-family: var(--font-serif);
+      }
+      
+      .font-sans {
+        font-family: var(--font-sans);
+      }
+
+      /* Noise Overlay */
+      .noise-bg {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100vw;
+        height: 100vh;
+        pointer-events: none;
+        z-index: 50;
+        opacity: 0.05;
+        background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+      }
+
+      /* Floating Blob Animations - Slower, deeper for the "Void" feel */
+      @keyframes float-deep {
+        0% { transform: translate(0, 0) scale(1); opacity: 0.3; }
+        33% { transform: translate(20px, -30px) scale(1.05); opacity: 0.4; }
+        66% { transform: translate(-15px, 15px) scale(0.95); opacity: 0.3; }
+        100% { transform: translate(0, 0) scale(1); opacity: 0.3; }
+      }
+      
+      .blob-deep { animation: float-deep 25s infinite ease-in-out; }
+
+      /* Cinematic Blur In - Emulating a camera finding focus */
+      @keyframes blur-focus-in {
+        0% { filter: blur(12px); opacity: 0; letter-spacing: 0.5em; }
+        40% { opacity: 0.6; }
+        100% { filter: blur(0); opacity: 1; letter-spacing: normal; }
+      }
+      
+      .animate-blur-focus {
+        animation: blur-focus-in 2.5s cubic-bezier(0.19, 1, 0.22, 1) forwards;
+      }
+
+      /* Standard Fade */
+      @keyframes fade-in-up {
+        from { opacity: 0; transform: translateY(20px); }
+        to { opacity: 1; transform: translateY(0); }
+      }
+      .animate-enter {
+        animation: fade-in-up 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        opacity: 0;
+      }
+      
+      @keyframes fade-out-down {
+        from { opacity: 1; transform: translateY(0); }
+        to { opacity: 0; transform: translateY(20px); }
+      }
+      .animate-exit {
+        animation: fade-out-down 0.5s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+      }
+    </style>
+  <script type="importmap">
+{
+  "imports": {
+    "react": "https://aistudiocdn.com/react@^19.2.0",
+    "react-dom/": "https://aistudiocdn.com/react-dom@^19.2.0/",
+    "react/": "https://aistudiocdn.com/react@^19.2.0/",
+    "lucide-react": "https://aistudiocdn.com/lucide-react@^0.554.0"
+  }
+}
+</script>
+</head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/index.tsx"></script>
+  </body>
+</html>
